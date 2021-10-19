@@ -1,9 +1,18 @@
 <?php
 
+use App\Http\Controllers\MyController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\PesananController;
+use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\SuplierController;
+use App\Http\Controllers\PembeliController;
+use App\Http\Controllers\BeliController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
-|--------------------------------------------------------------------------
+|--------------------------------------------------- -----------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -251,3 +260,44 @@ Route::get('latihan3' , function(){
 
     return view('latihan' , compact('latihan'));
 });
+
+Route::get('/testmodel' , function() {
+    $query = App\Models\Post::all();
+    return $query;
+});
+
+
+Route::get('/test-post' , function() {
+    $query = App\Models\Post::all();
+
+    return view('test-post' , compact('query'));
+});
+
+
+Route::get('/testbiodata' , function() {
+    $query = App\Models\Biodatas::all();
+    return $query;
+});
+
+
+Route::get('/test-biodatas' , function() {
+    $query = App\Models\Biodatas::all();
+
+    return view('biodatass' , compact('query'));
+});
+
+// Route::get('/contoh', function(){
+//     return view('sample');
+
+// });
+
+
+
+Route::get('/contoh', [MyController::class ,'tampilkan']);
+Route::get('/artikel', [PostController::class ,'tampil']);
+Route::get('/waw', [BarangController::class ,'data']);
+Route::get('/pesanan', [PesananController::class ,'pesanan']);
+Route::get('/pembeli', [PembelianController::class ,'pembeli']);
+Route::get('/suplier', [SuplierController::class ,'suplier']);
+Route::get('/beli', [PembeliController::class ,'p']);
+Route::get('/bel', [BeliController::class ,'index']);
